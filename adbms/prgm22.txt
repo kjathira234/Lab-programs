@@ -1,0 +1,53 @@
+> db.createCollection("Products")
+{ "ok" : 1 }
+> db.Products.insertMany([{"ProductID":1,"ProductName":"Laptop","Price":1000,"Quantity":20},{"ProductID":2,"ProductName":"Smartphone","Price":500,"Quantity":30},{"ProductID":3,"ProductName":"washing machine","Price":50000,"Quantity":50}])
+{
+	"acknowledged" : true,
+	"insertedIds" : [
+		ObjectId("69b7d3e4db556cfae0feb4ae"),
+		ObjectId("69b7d3e4db556cfae0feb4af"),
+		ObjectId("69b7d3e4db556cfae0feb4b0")
+	]
+}
+> db.Products.find().pretty()
+{
+	"_id" : ObjectId("69b7d3e4db556cfae0feb4ae"),
+	"ProductID" : 1,
+	"ProductName" : "Laptop",
+	"Price" : 1000,
+	"Quantity" : 20
+}
+{
+	"_id" : ObjectId("69b7d3e4db556cfae0feb4af"),
+	"ProductID" : 2,
+	"ProductName" : "Smartphone",
+	"Price" : 500,
+	"Quantity" : 30
+}
+{
+	"_id" : ObjectId("69b7d3e4db556cfae0feb4b0"),
+	"ProductID" : 3,
+	"ProductName" : "washing machine",
+	"Price" : 50000,
+	"Quantity" : 50
+}
+> db.Products.updateOne({"ProductName":"Laptop"},{$inc:{"Quantity":10}})
+
+{ "acknowledged" : true, "matchedCount" : 1, "modifiedCount" : 1 }
+
+> db.Products.find({"ProductID":1}).pretty()
+
+{
+	"_id" : ObjectId("69b7d3e4db556cfae0feb4ae"),
+	"ProductID" : 1,
+	"ProductName" : "Laptop",
+	"Price" : 1000,
+	"Quantity" : 30
+}
+> db.Products.deleteOne({"ProductName":"Smartphone"})
+
+{ "acknowledged" : true, "deletedCount" : 1 }
+
+> db.Products.find({"ProductID":2}).pretty()
+> 
+

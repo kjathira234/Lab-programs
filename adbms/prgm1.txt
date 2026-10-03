@@ -1,0 +1,82 @@
+mysql> create database athira;
+Query OK, 1 row affected (0.03 sec)
+
+mysql> use athira;
+Database changed
+mysql> create table student(RollNo int primary key,Name varchar(100),Age int,course varchar(100),year int);
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> desc student;
++--------+--------------+------+-----+---------+-------+
+| Field  | Type         | Null | Key | Default | Extra |
++--------+--------------+------+-----+---------+-------+
+| RollNo | int          | NO   | PRI | NULL    |       |
+| Name   | varchar(100) | YES  |     | NULL    |       |
+| Age    | int          | YES  |     | NULL    |       |
+| course | varchar(100) | YES  |     | NULL    |       |
+| year   | int          | YES  |     | NULL    |       |
++--------+--------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> alter table student add marks int;
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++--------+--------------+------+-----+---------+-------+
+| Field  | Type         | Null | Key | Default | Extra |
++--------+--------------+------+-----+---------+-------+
+| RollNo | int          | NO   | PRI | NULL    |       |
+| Name   | varchar(100) | YES  |     | NULL    |       |
+| Age    | int          | YES  |     | NULL    |       |
+| course | varchar(100) | YES  |     | NULL    |       |
+| year   | int          | YES  |     | NULL    |       |
+| marks  | int          | YES  |     | NULL    |       |
++--------+--------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> insert into student(RollNo,Name,Age,course,year,marks)values(101,'Aparna',21,'MCA',2,80),(102,'gopika',21,'MCA',2,81);
+Query OK, 2 rows affected (0.01 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> insert into student(RollNo,Name,Age,course,year,marks)values(103,'vishnupriya',21,'MCA',2,80),(104,'Ashli',22,'MCA',2,81);
+Query OK, 2 rows affected (0.01 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> insert into student(RollNo,Name,Age,course,year,marks)values(105,'Aiswarya',22,'MCA',2,80);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from student;
++--------+-------------+------+--------+------+-------+
+| RollNo | Name        | Age  | course | year | marks |
++--------+-------------+------+--------+------+-------+
+|    101 | Aparna      |   21 | MCA    |    2 |    80 |
+|    102 | gopika      |   21 | MCA    |    2 |    81 |
+|    103 | vishnupriya |   21 | MCA    |    2 |    80 |
+|    104 | Ashli       |   22 | MCA    |    2 |    81 |
+|    105 | Aiswarya    |   22 | MCA    |    2 |    80 |
++--------+-------------+------+--------+------+-------+
+5 rows in set (0.00 sec)
+
+mysql> truncate table student;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> desc student;
++--------+--------------+------+-----+---------+-------+
+| Field  | Type         | Null | Key | Default | Extra |
++--------+--------------+------+-----+---------+-------+
+| RollNo | int          | NO   | PRI | NULL    |       |
+| Name   | varchar(100) | YES  |     | NULL    |       |
+| Age    | int          | YES  |     | NULL    |       |
+| course | varchar(100) | YES  |     | NULL    |       |
+| year   | int          | YES  |     | NULL    |       |
+| marks  | int          | YES  |     | NULL    |       |
++--------+--------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> drop table student;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc student;
+ERROR 1146 (42S02): Table 'athira.student' doesn't exist
+

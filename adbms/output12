@@ -1,0 +1,21 @@
+mysql> create procedure Factorial1(in a int)
+    -> begin
+    -> declare f int default 1; 
+    -> while a>0 do
+    -> set f=f*a;
+    -> set a = a-1;
+    -> end while;
+    -> select concat('Factorial1 = ',f)as result;
+    -> end //
+Query OK, 0 rows affected (0.00 sec)
+mysql> delimiter ;
+mysql> call Factorial1(6);
++------------------+
+| result           |
++------------------+
+| Factorial1 = 720 |
++------------------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+

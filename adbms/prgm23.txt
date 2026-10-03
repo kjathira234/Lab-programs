@@ -1,0 +1,74 @@
+> db.Students.insertMany([{"Name":"Tony","age":17,"id":1,"sec":"A","subject":["physics","maths"]},{"Name":"Alice","age":18,"id":2,"sec":"A","subject":["physics","maths"]},{"Name":"John","age":17,"id":3,"sec":"B","subject":["chemistry","maths"]},{"Name":"smith","age":17,"id":4,"sec":"B","subject":["chemistry","maths"]},{"Name":"Bob","age":18,"id":5,"sec":"C","subject":["computer","maths"]},{"Name":"Doe","age":18,"id":6,"sec":"C","subject":["computer","maths"]}])
+{
+	"acknowledged" : true,
+	"insertedIds" : [
+		ObjectId("69b7db5ddb556cfae0feb4b1"),
+		ObjectId("69b7db5ddb556cfae0feb4b2"),
+		ObjectId("69b7db5ddb556cfae0feb4b3"),
+		ObjectId("69b7db5ddb556cfae0feb4b4"),
+		ObjectId("69b7db5ddb556cfae0feb4b5"),
+		ObjectId("69b7db5ddb556cfae0feb4b6")
+	]
+}
+
+> db.Students.aggregate([{$match:{sec:"B"}},{$count:"Total Student in sec:B"}])
+{ "Total Student in sec:B" : 2 }
+
+> db.Students.aggregate([{$group:{_id:"$sec",total_st:{$sum:1},max_age:{$max:"$age"}}}])
+{ "_id" : "C", "total_st" : 2, "max_age" : 18 }
+{ "_id" : "B", "total_st" : 2, "max_age" : 17 }
+{ "_id" : "A", "total_st" : 2, "max_age" : 18 }
+
+> db.Students.aggregate([{$match:{age:{$gt:17}}}]).pretty()
+{
+	"_id" : ObjectId("69b7db5ddb556cfae0feb4b2"),
+	"Name" : "Alice",
+	"age" : 18,
+	"id" : 2,
+	"sec" : "A",
+	"subject" : [
+		"physics",
+		"maths"
+	]
+}
+{
+	"_id" : ObjectId("69b7db5ddb556cfae0feb4b5"),
+	"Name" : "Bob",
+	"age" : 18,
+	"id" : 5,
+	"sec" : "C",
+	"subject" : [
+		"computer",
+		"maths"
+	]
+}
+{
+	"_id" : ObjectId("69b7db5ddb556cfae0feb4b6"),
+	"Name" : "Doe",
+	"age" : 18,
+	"id" : 6,
+	"sec" : "C",
+	"subject" : [
+		"computer",
+		"maths"
+	]
+}
+
+> db.Students.aggregate([{'$sort':{'age':1}}])
+{ "_id" : ObjectId("69b7db5ddb556cfae0feb4b1"), "Name" : "Tony", "age" : 17, "id" : 1, "sec" : "A", "subject" : [ "physics", "maths" ] }
+{ "_id" : ObjectId("69b7db5ddb556cfae0feb4b3"), "Name" : "John", "age" : 17, "id" : 3, "sec" : "B", "subject" : [ "chemistry", "maths" ] }
+{ "_id" : ObjectId("69b7db5ddb556cfae0feb4b4"), "Name" : "smith", "age" : 17, "id" : 4, "sec" : "B", "subject" : [ "chemistry", "maths" ] }
+{ "_id" : ObjectId("69b7db5ddb556cfae0feb4b2"), "Name" : "Alice", "age" : 18, "id" : 2, "sec" : "A", "subject" : [ "physics", "maths" ] }
+{ "_id" : ObjectId("69b7db5ddb556cfae0feb4b5"), "Name" : "Bob", "age" : 18, "id" : 5, "sec" : "C", "subject" : [ "computer", "maths" ] }
+{ "_id" : ObjectId("69b7db5ddb556cfae0feb4b6"), "Name" : "Doe", "age" : 18, "id" : 6, "sec" : "C", "subject" : [ "computer", "maths" ] }
+
+> db.Students.count()
+6
+
+> db.Students.distinct("Name")
+[ "Alice", "Bob", "Doe", "John", "Tony", "smith" ]
+
+> db.Students.distinct("age")
+[ 17, 18 ]
+> 
+

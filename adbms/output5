@@ -1,0 +1,115 @@
+mysql> select *from employee1;
++--------+---------+--------+-------------+--------------+------------------+----------------+
+| emp_id | name    | gender | department  | education    | month_of_joining | salary_in_lacs |
++--------+---------+--------+-------------+--------------+------------------+----------------+
+|   1001 | Ajay    | M      | Engineering | Doctoral     | January          |             25 |
+|   1002 | Babloo  | M      | Engineering | UG           | Februray         |             23 |
+|   1003 | Chhavi  | F      | HR          | PG           | March            |             15 |
+|   1004 | Dheeraj | M      | HR          | UG           | January          |             12 |
+|   1005 | Evina   | F      | Marketing   | UG           | March            |             16 |
+|   1006 | Freddy  | M      | Sales       | UG           | December         |             10 |
+|   1007 | Garima  | F      | Sales       | PG           | March            |             10 |
+|   1008 | Hans    | M      | Admin       | PG           | November         |              6 |
+|   1009 | Ivanika | F      | Admin       | Intermediate | April            |              7 |
+|   1010 | Jay     | M      | Peon        | High school  | December         |              4 |
++--------+---------+--------+-------------+--------------+------------------+----------------+
+10 rows in set (0.00 sec)
+mysql> select department,sum(salary_in_lacs)as salary_sum from employee1 group by department;
++-------------+------------+
+| department  | salary_sum |
++-------------+------------+
+| Engineering |         48 |
+| HR          |         27 |
+| Marketing   |         16 |
+| Sales       |         20 |
+| Admin       |         13 |
+| Peon        |          4 |
++-------------+------------+
+6 rows in set (0.00 sec)
+mysql> select department,sum(salary_in_lacs)as salary_sum from employee1 group by department having sum(salary_in_lacs)>=20;
++-------------+------------+
+| department  | salary_sum |
++-------------+------------+
+| Engineering |         48 |
+| HR          |         27 |
+| Sales       |         20 |
++-------------+------------+
+3 rows in set (0.00 sec)
+mysql> select distinct department from employee1;
++-------------+
+| department  |
++-------------+
+| Engineering |
+| HR          |
+| Marketing   |
+| Sales       |
+| Admin       |
+| Peon        |
++-------------+
+6 rows in set (0.00 sec)
+mysql> select count(salary_in_lacs)from employee1;
++-----------------------+
+| count(salary_in_lacs) |
++-----------------------+
+|                    10 |
++-----------------------+
+1 row in set (0.00 sec)
+mysql> select * from employee1 where department='Engineering' and education='Doctoral';
++--------+------+--------+-------------+-----------+------------------+----------------+
+| emp_id | name | gender | department  | education | month_of_joining | salary_in_lacs |
++--------+------+--------+-------------+-----------+------------------+----------------+
+|   1001 | Ajay | M      | Engineering | Doctoral  | January          |             25 |
++--------+------+--------+-------------+-----------+------------------+----------------+
+1 row in set (0.00 sec)
+
+mysql> select * from employee1 where department='Engineering' or education='Doctoral';
++--------+--------+--------+-------------+-----------+------------------+----------------+
+| emp_id | name   | gender | department  | education | month_of_joining | salary_in_lacs |
++--------+--------+--------+-------------+-----------+------------------+----------------+
+|   1001 | Ajay   | M      | Engineering | Doctoral  | January          |             25 |
+|   1002 | Babloo | M      | Engineering | UG        | Februray         |             23 |
++--------+--------+--------+-------------+-----------+------------------+----------------+
+2 rows in set (0.00 sec)
+mysql> select name as first_name,education as qualification from employee1;
++------------+---------------+
+| first_name | qualification |
++------------+---------------+
+| Ajay       | Doctoral      |
+| Babloo     | UG            |
+| Chhavi     | PG            |
+| Dheeraj    | UG            |
+| Evina      | UG            |
+| Freddy     | UG            |
+| Garima     | PG            |
+| Hans       | PG            |
+| Ivanika    | Intermediate  |
+| Jay        | High school   |
++------------+---------------+
+10 rows in set (0.00 sec)
+mysql> select name from employee1 where name like 'A%';
++------+
+| name |
++------+
+| Ajay |
++------+
+1 row in set (0.00 sec)
+mysql> select department,sum(salary_in_lacs)from employee1 where education<>'UG' group by department having sum(salary_in_lacs)>=20;
++-------------+---------------------+
+| department  | sum(salary_in_lacs) |
++-------------+---------------------+
+| Engineering |                  25 |
++-------------+---------------------+
+1 row in set (0.00 sec)
+
+mysql> select department,sum(salary_in_lacs)from employee1 group by department having sum(salary_in_lacs)>=15 order by sum(salary_in_lacs)desc;
++-------------+---------------------+
+| department  | sum(salary_in_lacs) |
++-------------+---------------------+
+| Engineering |                  48 |
+| HR          |                  27 |
+| Sales       |                  20 |
+| Marketing   |                  16 |
+| Admin       |                  15 |
++-------------+---------------------+
+5 rows in set (0.00 sec)
+

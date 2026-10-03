@@ -1,0 +1,82 @@
+mysql> create table Department(Dept_id int primary key,Dept_Name varchar(50),Dept_Head varchar(50));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> create table Employee(Emp_id int primary key,Emp_Name varchar(50),Dept_id int,Salary float,foreign key(Dept_id) references Department(Dept_id));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> desc Employee;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| Emp_id   | int         | NO   | PRI | NULL    |       |
+| Emp_Name | varchar(50) | YES  |     | NULL    |       |
+| Dept_id  | int         | YES  | MUL | NULL    |       |
+| Salary   | float       | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> desc Department;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| Dept_id   | int         | NO   | PRI | NULL    |       |
+| Dept_Name | varchar(50) | YES  |     | NULL    |       |
+| Dept_Head | varchar(50) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> insert into Department(Dept_id,Dept_Name,Dept_Head)values(1,'Dept_A','Dept_HeadA'),(2,'Dept_B','Dept_HeadB'),(3,'Dept_C','Dept_HeadC'),(4,'Dept_D','Dept_HeadD');
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> insert into Employee(Emp_id,Emp_Name,Dept_id,Salary)values(101,'EmpA',1,50000.00),(102,'EmpB',2,35000.00),(103,'EmpC',3,70000.00),(104,'EmpD',4,50000.00);
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from Employee;
++--------+----------+---------+--------+
+| Emp_id | Emp_Name | Dept_id | Salary |
++--------+----------+---------+--------+
+|    101 | EmpA     |       1 |  50000 |
+|    102 | EmpB     |       2 |  35000 |
+|    103 | EmpC     |       3 |  70000 |
+|    104 | EmpD     |       4 |  50000 |
++--------+----------+---------+--------+
+4 rows in set (0.00 sec)
+
+mysql> select * from Department;
++---------+-----------+------------+
+| Dept_id | Dept_Name | Dept_Head  |
++---------+-----------+------------+
+|       1 | Dept_A    | Dept_HeadA |
+|       2 | Dept_B    | Dept_HeadB |
+|       3 | Dept_C    | Dept_HeadC |
+|       4 | Dept_D    | Dept_HeadD |
++---------+-----------+------------+
+4 rows in set (0.00 sec)
+
+mysql> update Employee set Salary=75000.25 where Emp_id=104;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from Employee where Emp_id=104;
++--------+----------+---------+---------+
+| Emp_id | Emp_Name | Dept_id | Salary  |
++--------+----------+---------+---------+
+|    104 | EmpD     |       4 | 75000.2 |
++--------+----------+---------+---------+
+1 row in set (0.00 sec)
+
+mysql> delete from Employee where Emp_id=103;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from Employee;
++--------+----------+---------+---------+
+| Emp_id | Emp_Name | Dept_id | Salary  |
++--------+----------+---------+---------+
+|    101 | EmpA     |       1 |   50000 |
+|    102 | EmpB     |       2 |   35000 |
+|    104 | EmpD     |       4 | 75000.2 |
++--------+----------+---------+---------+
+3 rows in set (0.00 sec)
+

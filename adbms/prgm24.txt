@@ -1,0 +1,73 @@
+> db.createCollection("EMPL")
+{ "ok" : 1 }
+
+> db.EMPL.insertMany([{"Empno":1,"Name":"John doe","Salary":60000,"Role":"Manager"},{"Empno":1,"Name":"John doe","Salary":60000,"Role":"Manager"}])
+{
+	"acknowledged" : true,
+	"insertedIds" : [
+		ObjectId("69ba31dca2f8fa109805f7c0"),
+		ObjectId("69ba31dca2f8fa109805f7c1")
+	]
+}
+> db.EMPL.find().pretty()
+{
+	"_id" : ObjectId("69ba31dca2f8fa109805f7c0"),
+	"Empno" : 1,
+	"Name" : "John doe",
+	"Salary" : 60000,
+	"Role" : "Manager"
+}
+{
+	"_id" : ObjectId("69ba31dca2f8fa109805f7c1"),
+	"Empno" : 1,
+	"Name" : "John doe",
+	"Salary" : 60000,
+	"Role" : "Manager"
+}
+
+> db.createUser({user:"admin",pwd:"admin123",roles:["readWrite","dbAdmin"]})
+Successfully added user: { "user" : "admin", "roles" : [ "readWrite", "dbAdmin" ] }
+
+> db.createUser({user:"developer",pwd:"dev123",roles:["readWrite"]});
+Successfully added user: { "user" : "developer", "roles" : [ "readWrite" ] }
+> show users
+{
+	"_id" : "athira.admin",
+	"userId" : UUID("456450dc-333b-426c-a6ab-c755aff13c41"),
+	"user" : "admin",
+	"db" : "athira",
+	"roles" : [
+		{
+			"role" : "readWrite",
+			"db" : "athira"
+		},
+		{
+			"role" : "dbAdmin",
+			"db" : "athira"
+		}
+	],
+	"mechanisms" : [
+		"SCRAM-SHA-1",
+		"SCRAM-SHA-256"
+	]
+}
+{
+	"_id" : "athira.developer",
+	"userId" : UUID("69f78a99-48ef-4bb2-ab4c-43f9eef55c11"),
+	"user" : "developer",
+	"db" : "athira",
+	"roles" : [
+		{
+			"role" : "readWrite",
+			"db" : "athira"
+		}
+	],
+	"mechanisms" : [
+		"SCRAM-SHA-1",
+		"SCRAM-SHA-256"
+	]
+}
+
+
+
+

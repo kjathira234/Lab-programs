@@ -1,0 +1,100 @@
+mysql> create table Employees(employee_id int primary key,first_name varchar(50),last_name varchar(50),salary decimal(10,2));
+Query OK, 0 rows affected (0.02 sec)mysql> delimiter //
+mysql> create trigger after_employee_insert
+    -> after insert on Employees
+    -> for each row
+    -> begin
+    -> insert into audit_log(action,timestamp)
+    -> values("New employee inserted",now());
+    -> end //
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> delimiter ;
+mysql> insert into Employees(employee_id,first_name,last_name,salary)
+    -> values(4,'Minnu','Joseph',65000.00);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from Employees;
++-------------+------------+-----------+----------+
+| employee_id | first_name | last_name | salary   |
++-------------+------------+-----------+----------+
+|           1 | John       | Doe       | 50000.00 |
+|           2 | Jane       | Smith     | 60000.00 |
+|           3 | Michael    | Johnson   | 55000.00 |
+|           4 | Minnu      | Joseph    | 65000.00 |
++-------------+------------+-----------+----------+
+4 rows in set (0.00 sec)
+
+mysql> select * from audit_log;
++--------+-----------------------+---------------------+
+| log_id | action                | timestamp           |
++--------+-----------------------+---------------------+
+|      1 | New employees added   | 2026-03-04 11:00:37 |
+|      2 | New employee inserted | 2026-03-04 11:04:25 |
++--------+-----------------------+---------------------+
+2 rows in set (0.00 sec)
+
+mysql> insert into Employees(employee_id,first_name,last_name,salary)values(1,'John','Doe',50000.00);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into Employees(employee_id,first_name,last_name,salary)values(2,'Jane','Smith',60000.00),(3,'Michael','Johnson',55000.00);
+Query OK, 2 rows affected (0.00 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from Employees;
++-------------+------------+-----------+----------+
+| employee_id | first_name | last_name | salary   |
++-------------+------------+-----------+----------+
+|           1 | John       | Doe       | 50000.00 |
+|           2 | Jane       | Smith     | 60000.00 |
+|           3 | Michael    | Johnson   | 55000.00 |
++-------------+------------+-----------+----------+
+3 rows in set (0.00 sec)
+
+mysql> create table audit_log(log_id int primary key auto_increment,action varchar(255),timestamp timestamp default current_timestamp);
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> insert into audit_log(action,timestamp)values("New employees added",current_timestamp);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from audit_log;
++--------+---------------------+---------------------+
+| log_id | action              | timestamp           |
++--------+---------------------+---------------------+
+|      1 | New employees added | 2026-03-04 11:00:37 |
++--------+---------------------+---------------------+
+1 row in set (0.01 sec)
+mysql> delimiter //
+mysql> create trigger after_employee_insert
+    -> after insert on Employees
+    -> for each row
+    -> begin
+    -> insert into audit_log(action,timestamp)
+    -> values("New employee inserted",now());
+    -> end //
+Query OK, 0 rows affected (0.01 sec)
+mysql> delimiter ;
+mysql> insert into Employees(employee_id,first_name,last_name,salary)
+    -> values(4,'Minnu','Joseph',65000.00);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from Employees;
++-------------+------------+-----------+----------+
+| employee_id | first_name | last_name | salary   |
++-------------+------------+-----------+----------+
+|           1 | John       | Doe       | 50000.00 |
+|           2 | Jane       | Smith     | 60000.00 |
+|           3 | Michael    | Johnson   | 55000.00 |
+|           4 | Minnu      | Joseph    | 65000.00 |
++-------------+------------+-----------+----------+
+4 rows in set (0.00 sec)
+
+mysql> select * from audit_log;
++--------+-----------------------+---------------------+
+| log_id | action                | timestamp           |
++--------+-----------------------+---------------------+
+|      1 | New employees added   | 2026-03-04 11:00:37 |
+|      2 | New employee inserted | 2026-03-04 11:04:25 |
++--------+-----------------------+---------------------+
+2 rows in set (0.00 sec)
+

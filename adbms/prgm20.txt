@@ -1,0 +1,31 @@
+> use athira;
+switched to db athira
+> db.createCollection("Student")
+{ "ok" : 1 }
+> db.Student.insert({rollno:101,name:"Alex",Branch:"MCA"})
+WriteResult({ "nInserted" : 1 })
+> db.Student.insert({rollno:102,name:"Maya",Branch:"MBA"})
+WriteResult({ "nInserted" : 1 })
+> db.Student.insert({rollno:103,name:"Niya",Branch:"BCA"})
+WriteResult({ "nInserted" : 1 })
+> db.Student.find().pretty()
+{
+	"_id" : ObjectId("69b7c77c8d56ace1d619e73e"),
+	"rollno" : 101,
+	"name" : "Alex",
+	"Branch" : "MCA"
+}
+{
+	"_id" : ObjectId("69b7c7b08d56ace1d619e73f"),
+	"rollno" : 102,
+	"name" : "Maya",
+	"Branch" : "MBA"
+}
+{
+	"_id" : ObjectId("69b7c7e38d56ace1d619e740"),
+	"rollno" : 103,
+	"name" : "Niya",
+	"Branch" : "BCA"
+}
+> 
+
