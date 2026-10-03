@@ -1,0 +1,5 @@
+hi world
+This is a test file
+Searching words is fun
+hi again
+hi world

@@ -1,0 +1,30 @@
+Enter the filename:
+sample
+Enter the word to search:
+hello
+The word hello appears multiple times: hello again.
+
+
+
+Enter the filename:
+sample
+28
+
+
+
+Enter the filename:
+sample
+Enter the word to replace:
+hello
+Enter the new word:
+hai
+
+
+
+Enter the filename:
+sample
+mango
+orange
+
+
+
