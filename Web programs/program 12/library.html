@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Membership form</title>
+</head>
+<body>
+<h2>Libary Membership form</h2>
+<form action="submit_form.php" method="post">
+<fieldset>
+<label for="full name">Full Name</label><br>
+<input type="text" id="full name" name="full name" required><br><br>
+<label for="email">Email</label><br>
+<input type="text" id="email" name="email" required><br><br>
+<label for="password">Password</label><br>
+<input type="password" id="password" name="password" required minlength="6" placeholder="at least 6 characters"<br><br>
+<label for="phone">Phone</label><br>
+<input type="tel" id="phone" name="phone"  required pattern="[0-9]{10}" placeholder="10 digits"><br><br>
+<label for="address">Address</label><br>
+<textarea id="address" name="address" rows="3" required></textarea><br><br>
+<label for="dob">Date of birth</label><br>
+<input type="date" id="dob" name="dob" required><br><br>
+<label>Gender:</label><br>
+<input type="radio" id="male" name="gender" value="male" required>Male<br>
+<input type="radio" id="female" name="gender" value="female" required>Female<br>
+<input type="radio" id="other" name="gender" value="other">Other<br><br>
+<label>Interested sections</label><br>
+<input type="checkbox" id="fiction" name="interest" value="fiction" required>Fiction<br>
+<input type="checkbox" id="nonfiction" name="interest" value="non-fiction" required>Non-Fiction<br>
+<input type="checkbox" id="science" name="interest" value="science">Science<br>
+<input type="checkbox" id="history" name="interest" value="history">History<br>
+<label for="membership">Membership Type</label><br>
+<select name="membership" id="membership" required>
+<option value="">---select--</option>
+<option value=''student">Student</option>
+<option value="regular">Regular</option>
+<option value=''premium">Premium</option>
+</select><br><br>
+<input type="submit" value="submit">
+<input type="reset" value"="reset">
+</fieldset>
+</form>
+</body>
+</html>

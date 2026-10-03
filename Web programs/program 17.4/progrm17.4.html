@@ -1,0 +1,48 @@
+<html>
+<head>
+<title>3 Button JavaScript Example</title>
+<style>
+body {
+text-align: center;
+padding-top: 50px;
+background-color: white;
+transition: all 0.5s ease;
+}
+
+button {
+margin: 10px;
+padding: 10px 20px;
+font-size: 16px;
+border-radius: 8px;
+cursor: pointer;
+}
+
+</style>
+</head>
+
+<body>
+<h2>Simple JavaScript Example</h2>
+
+<button onclick="changeColor()">Change Color</button>
+<button onclick="changeBackgroundImage()">Change Background Image</button>
+<button onclick="resumeNormal()">Resume to Normal</button>
+
+<script>
+function changeColor() {
+document.body.style.backgroundColor = "lightblue";
+}
+
+function changeBackgroundImage() {
+document.body.style.backgroundImage = "url('https://media.istockphoto.com/id/517188688/photo/mountain-landscape.jpg?s=612x612&w=0&k=20&c=A63koPKaCyIwQWOTFBRWXj_PwCrR4cEoOw2S9Q7yVl8=')";
+document.body.style.backgroundSize = "cover";
+}
+
+
+function resumeNormal() {
+document.body.style.backgroundColor = "white";
+document.body.style.backgroundImage = "none";
+}
+
+</script>
+</body>
+</html>

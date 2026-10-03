@@ -1,0 +1,46 @@
+<DOCTYPE html>
+<html>
+<head>
+<title>Survey report</title>
+</heag>
+<body>
+<h2>Online survey report</h2>
+<form action="submit" method="post">
+<fieldset>
+<label for="name">Name:</label><br>
+<input type="name"  id="name name="name" required><br>
+<label for="Age">Age</label><br>
+<input type="name"  id="age" name="age" min="1" max="120" required><br><br>
+<label>Gender:</label><br>
+<input type="radio" id="male" name="gender" value="male" required>
+<label for="male">Male<label><br>
+<input type="radio" id="female" name="gender" value="female" required>
+<label for="female">Female<label><br>
+<input type="radio" id="other" name="gender" value="other" >
+<label for="other">Other<label><br><br>
+<label for="activity">Favourite online activity:</label><br>
+<select id="activity" name="activity " required>
+<option value="">--select--></option>
+<option value="social media">Social media</option>
+<option value="news">News</option>
+<option value="Shopping">Shopping</option>
+<option value="gaming">Gaming</option><br>
+</select>
+<br><br>
+<label>Devices used:</label><br>
+<input type="checkbox" id="phone" name="devices" value="Phone">
+<label for="phone">Phone</label><br>
+<input type="checkbox"  id="tablet" name="devices" value="Tablet">
+<label for="tablet">Tablet</label><br>
+<input type="checkbox"  id="laptop" name="devices" value="Laptop">
+<label for="laptop">Laptop</label><br><br>
+General comments:<br>
+<textarea name="comments" rows="4" cols="40">
+</textarea><br><br>
+<input type="submit" value="submit">
+<input type="reset" value"="reset">
+</fieldset>
+</form>
+</body>
+</html>
+

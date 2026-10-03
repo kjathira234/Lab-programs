@@ -1,0 +1,16 @@
+<html>
+<head>
+<title>Button Click Example</title>
+</head>
+<body>
+<h2>Example:Changing Text on Button click</h2>
+<button id="changeBtn">change text</button>
+<p id="message">Original Text</p>
+<script>
+document.getElementById("changeBtn").addEventListener("click",function()
+{
+document.getElementById("message").innerHTML="Text changed after clicking!";
+});
+</script>
+</body>
+</html>

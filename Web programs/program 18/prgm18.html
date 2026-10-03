@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Simple registration form</title>
+</head>
+<body>
+<h2>Registration Form</h2>
+<form onsubmit="return validateForm()">
+Name:<br>
+<input type="text" id="name"><br><br>
+Email:<br>
+<input type="text" id="email"><br><br>
+Phone:<br>
+<input type="text" id="phone"><br><br>
+Password:<br>
+<input type="password" id="password"><br><br>
+Confirm password:<br>
+<input type="password" id="confirm"><br><br>
+<input type="submit" value="register">
+</form>
+<script>
+// Function name case corrected to match the HTML onsubmit attribute
+function validateForm(){
+var name = document.getElementById("name").value;
+var email = document.getElementById("email").value;
+var phone = document.getElementById("phone").value;
+var password = document.getElementById("password").value;
+// CORRECTED: Changed variable name from 'confirm' (reserved keyword) to 'confirmPassword'
+var confirmPassword = document.getElementById("confirm").value; 
+
+// Initial check now uses confirmPassword
+if(name =="" || email =="" || phone =="" || password == "" || confirmPassword == "")
+{
+alert("All fields are required!");
+return false;
+}
+if(!email.includes("@") || !email.includes("."))
+{
+alert("Enter a valid email!");
+return false;
+}
+// CORRECTED: Changed '! =10' to '!= 10' for the 'not equal to' operator
+if(phone.length != 10 || isNaN(phone))
+{
+alert("Enter a valid 10-digit phone numnber!");
+return false;
+}
+if(password.length<6)
+{
+alert("password must be at least 6 characters!");
+return false;
+}
+// Final password match check uses confirmPassword
+if(password != confirmPassword)
+{
+alert("password do not match!");
+return false;
+}
+alert("Registration Successful");
+return true;
+}
+</script>
+</body>
+</html>

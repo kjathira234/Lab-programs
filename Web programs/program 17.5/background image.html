@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Full Background Image Example</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+      height: 100vh; 
+    }
+  </style>
+</head>
+<body align="center">
+<button onclick="changeBackgroundImage()">Change Background Image</button>
+<script>
+function changeBackgroundImage() {
+  document.body.style.backgroundImage = "url('images.jpeg')";
+}
+</script>
+
+</body>
+</html>
